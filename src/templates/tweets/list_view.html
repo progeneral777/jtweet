@@ -1,1 +1,26 @@
-{{ object_list }}
+
+{% extends "base.html"  %}
+
+
+{% block content %}
+
+
+	{% include "tweets/search_form.html" %}<br/>
+<h1>here</h1>
+
+	{% for object in object_list%}
+
+	{{ object.content }}<br/>
+	{{ object.user }}<br/>
+	{{ object.timestamp|timesince }} <br/>
+	{% empty %}
+
+	{%  if request.GET.q%}
+	<p>No tweets found.</p>
+	{%else %}
+	<p>No tweets yet.</p>
+	{% endif %}
+	{% endfor %}
+
+ 
+{% endblock content %}
